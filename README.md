@@ -1,3 +1,5 @@
+![CircleCI](https://img.shields.io/circleci/build/gh/iotwx/iotwx.github.io-hugo?label=deploy&logo=circleci&style=for-the-badge)
+
 # IOTWX Website
 
 - [IOTWX Website](#iotwx-website)
