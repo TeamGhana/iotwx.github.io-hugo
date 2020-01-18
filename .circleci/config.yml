@@ -8,6 +8,10 @@ workflows:
       - deploy:
           requires:
             - build
+          filters:
+            branches:
+              only:
+                - master
 
 jobs:
   "build":
@@ -92,4 +96,4 @@ jobs:
             git config --global user.name "IOTWX Bot"
             git add -A
             git commit -m "Automated web deploy"
-          # git push -f origin master:master
+            git push -f origin master:master
