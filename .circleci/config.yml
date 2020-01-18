@@ -1,0 +1,35 @@
+version: 2
+# Tell CircleCI to use this workflow
+workflows:
+  version: 2
+  default:
+    jobs:
+      - "build"
+
+jobs:
+  "build":
+    working_directory: ~/iotwx.github.io-hugo
+    docker:
+      - image: circleci/golang:latest
+
+    steps:
+      # Get our data and merge with upstream
+      - checkout
+
+      - run:
+          name: Install Dependencies
+          command: |
+            sudo apt-get install curl software-properties-common
+            curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+            sudo apt-get install hugo
+            sudo npm install -g remark-cli remark-validate-links
+
+      - run:
+          name: Validate links and Markdown
+          command: |
+            remark -f -u validate-links .
+
+      - run:
+          name: Build Website
+          command: hugo
