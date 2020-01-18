@@ -73,7 +73,9 @@ jobs:
             git clone git@github.com:iotwx/iotwx.github.io.git
             cd iotwx.github.io
             ls -ltrh
-      # rm -rf dist && cp -r /tmp/workspace/public ../dist
+            ls -ltrh /tmp/workspace/public
+            cp -r /tmp/workspace/public/ .
+            ls -ltrh
       # - run:
       #     name: Change to master branch and replace w/ new site
       #     command: |
