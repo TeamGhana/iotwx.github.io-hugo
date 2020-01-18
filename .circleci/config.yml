@@ -4,7 +4,10 @@ workflows:
   version: 2
   default:
     jobs:
-      - "build"
+      - build
+      - deploy:
+          requires:
+            - build
 
 jobs:
   "build":
@@ -45,3 +48,44 @@ jobs:
           root: .
           paths:
             - public/
+
+  "deploy":
+    working_directory: ~/build_dir
+    docker:
+      - image: circleci/golang:latest
+
+    steps:
+      - checkout
+
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: /tmp/workspace
+        # Add deployment key fingerprint for CircleCI to use for a push
+      - add_ssh_keys:
+          fingerprints:
+            - "ea:34:69:fc:25:23:36:c4:25:fa:74:b3:14:0f:3a:99"
+
+      # Copying over built website to the live site
+      - run:
+          name: Copy over built site files
+          command: |
+            cd ~/build_dir
+            git clone git@github.com:iotwx/iotwx.github.io.git
+            cd iotwx.github.io
+            ls -ltrh
+      # rm -rf dist && cp -r /tmp/workspace/public ../dist
+      # - run:
+      #     name: Change to master branch and replace w/ new site
+      #     command: |
+      #       git checkout master
+      #       rm -rf ./*
+      #       cp -r ../dist/* ./
+      #       touch ./index.html
+      # - run:
+      #     name: Commit results and push to master
+      #     command: |
+      #       git config --global user.email "bot@iotwx.github.io"
+      #       git config --global user.name "IOTWX Bot"
+      #       git add -A
+      #       git commit -m "Automated web deploy"
+      #       git push -f origin master:master
