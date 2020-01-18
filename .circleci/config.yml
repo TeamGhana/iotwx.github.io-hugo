@@ -32,4 +32,14 @@ jobs:
 
       - run:
           name: Build Website
-          command: hugo
+          command: |
+            hugo
+            ls -ltrh
+
+      - store_artifacts:
+          path: public/
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - public/
