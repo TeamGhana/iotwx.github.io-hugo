@@ -74,20 +74,21 @@ jobs:
             cd iotwx.github.io
             ls -ltrh
             ls -ltrh /tmp/workspace/public
-            cp -r /tmp/workspace/public/ .
-            ls -ltrh
-      # - run:
-      #     name: Change to master branch and replace w/ new site
-      #     command: |
-      #       git checkout master
-      #       rm -rf ./*
-      #       cp -r ../dist/* ./
-      #       touch ./index.html
-      # - run:
-      #     name: Commit results and push to master
-      #     command: |
-      #       git config --global user.email "bot@iotwx.github.io"
-      #       git config --global user.name "IOTWX Bot"
-      #       git add -A
-      #       git commit -m "Automated web deploy"
-      #       git push -f origin master:master
+
+      - run:
+          name: Change to master branch and replace w/ new site
+          command: |
+            cd ~/build_dir/iotwx.github.io
+            git checkout master
+            cp -r /tmp/workspace/public/ ./
+            touch ./index.html
+            git status
+      - run:
+          name: Commit results and push to master
+          command: |
+            cd ~/build_dir/iotwx.github.io
+            git config --global user.email "bot@iotwx.github.io"
+            git config --global user.name "IOTWX Bot"
+            git add -A
+            git commit -m "Automated web deploy"
+          # git push -f origin master:master
