@@ -83,6 +83,7 @@ jobs:
             cp -r /tmp/workspace/public/* ./
             touch ./index.html
             git status
+            git remote -v
       - run:
           name: Commit results and push to master
           command: |
