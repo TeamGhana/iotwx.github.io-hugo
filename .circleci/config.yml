@@ -80,7 +80,7 @@ jobs:
           command: |
             cd ~/build_dir/iotwx.github.io
             git checkout master
-            cp -r /tmp/workspace/public/ ./
+            cp -r /tmp/workspace/public/* ./
             touch ./index.html
             git status
       - run:
