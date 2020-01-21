@@ -1,0 +1,134 @@
+# Site settings
+baseurl = "/"
+languageCode = "en-us"
+title = "IOTWX | OPEN SOURCE WEATHER STATIONS"
+theme = "syna"
+enableGitInfo = true
+version = "0.1"
+
+# Google Analytics tracking
+googleAnalytics = ""
+
+[outputs]
+  home = ["HTML", "JSON"]
+
+[frontmatter]
+date = ["date", "lastmod"]
+lastmod = ["lastmod", ":git", "date"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+     unsafe = true
+
+[params]
+  name = "The IoTwx Project"
+  description = "Making weather observation possible for everyone, everywhere."
+
+  [params.style]
+    #background = "secondary"
+
+  # Theme customizations
+  # Assets relative to 'static/'
+  [params.custom]
+    favicon = "favicon.ico"
+    favicon_ico_sizes = "16x16 32x32"
+    favicon_png = "favicon.png"
+    favicon_svg = "favicon.svg"
+
+  # Piwik tracking
+  [params.analytics.piwik]
+    #url = ""
+    #id = ""
+    #domain = "" # Track subdomains via "*.example.com"
+    # Optional hash for integrity check
+    #hash = "sha512-RfeD0pacGTqy9m7U6PgehQfS4cc7SIt+e+P+H5e848kEvB/RW84CUGO3O4O3LNbxjevym6KPUZ8muPsMrI8WIw=="
+
+  # Optional, global disable switch for fontawesome related files
+  # For custom fontawesome js files use the custom.js method
+  [params.fontawesome]
+    disabled = false
+    pro = false
+
+  [params.colors]
+    primary = "#00838F"
+    secondary = "#868e96"
+    success = "#008f54"
+    info = "#00c9dc"
+    warning = "#fdf314"
+    danger = "#dc1200"
+    light = "#f8f9fa"
+    dark = "#343a40"
+
+# main/prepend/postpend menus are displayed in nav fragment.
+# Keep an eye out for updates. These will be moved out to make navbar more
+# configurable.
+[[menu.main]]
+  url = "/"
+  name = "Home"
+  weight = 10
+
+[[menu.main]]
+  url = "/for/education"
+  name = "Education"
+  weight = 20
+
+[[menu.main]]
+  url = "/for/citizensci"
+  name = "Citizen Science"
+  weight = 21
+
+[[menu.main]]
+  url = "/for/research"
+  name = "Research"
+  weight = 23
+
+
+#[menu.main]]
+#  url = "#contact"
+#  name = "Contact"
+#  weight = 30
+
+[[menu.footer]]
+  url = "/build"
+  name = "Build a station"
+  weight = 10
+
+[[menu.footer]]
+  url = "#"
+  name = "Buy a station"
+  weight = 30
+
+[[menu.footer]]
+  url = "/getinvolved"
+  name = "Get involved!"
+  weight = 30
+
+[[menu.footer]]
+  url = "/resources/"
+  name = "Other resources"
+  weight = 30
+
+
+[[menu.copyright_footer]]
+  url = "/about"
+  name = "About Us"
+  weight = 10
+
+#[[menu.copyright_footer]]
+#  url = "#"
+#  name = "Another Link"
+#  weight = 30
+
+[[menu.footer_social]]
+  weight = 20
+  name = "Join us on Github"
+  pre = "fab fa-github"
+  url = "https://github.com/iotwx"
+
+#
+#[[menu.footer_social]]
+#  weight = 30
+#  name = "linkedin"
+#  pre = "fab fa-linkedin-in"
+#  url = "#"
